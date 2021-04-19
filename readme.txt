@@ -17,6 +17,8 @@ POSIBLES IMPLEMENTACIONES:
 -posible uso por parte de los alumnos
 
 api:
+user/ da el usuario actual
+
 grades/ da todos los grados en la base de datos relacionados con el profesor en sesión  
 
 classes/ da todas las clases en la base de datos relacionadas con el grado y al profesor en sesión

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,8 +54,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'sistema_backend.urls'
@@ -144,10 +144,9 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ORIGIN_WHITELIST = [
-#      "http://localhost:8080",
-#      "https://the-blue-serf-front-end.herokuapp.com",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+]
 
 CORS_ALLOW_METHODS = (
      'DELETE',
@@ -157,6 +156,11 @@ CORS_ALLOW_METHODS = (
      'POST',
      'PUT',
 )
+
+# CORS_ORIGIN_WHITELIST = [
+#      "http://localhost:8080",
+#      "https://the-blue-serf-front-end.herokuapp.com",
+# ]
 
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
