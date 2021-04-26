@@ -24,5 +24,5 @@ urlpatterns = [
     path('panel/', include(panel_urls)),
     path('accounts/', include(accounts_urls)),
     #sirve cuando el usuario nesesita logiarse
-    path('login/', views.obtain_auth_token),
+    #path('login/', views.obtain_auth_token),
 ]
