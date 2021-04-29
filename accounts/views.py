@@ -6,6 +6,14 @@ from .serializers import UserSerializer
 from .models import User
 from rest_framework.authtoken.views import ObtainAuthToken #clase para heredar 
 from rest_framework.authtoken.models import Token # token en djangorestframework
+from django.contrib.auth import authenticate
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND,
+    HTTP_200_OK,
+)
 
 #view de los usuarios
 class usersView(viewsets.ViewSet):
@@ -15,6 +23,7 @@ class usersView(viewsets.ViewSet):
         return Response(serializer.data)
 
 class CustomAuthToken(ObtainAuthToken):
+    permission_classes = [AllowAny]
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,context={'request':request})
         serializer.is_valid(raise_exception=True)
