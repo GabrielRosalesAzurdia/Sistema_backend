@@ -36,6 +36,6 @@ class usersView(viewsets.ViewSet):
 #             'email':user.email
 #         })
 
-class MyTokenObtainPairView(TokenObtainPairView):
+class TokenObtainPairView(TokenObtainPairView):
     permission_classes=(AllowAny,)
     serializer_class = MyTokenObtainPairSerializer

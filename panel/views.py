@@ -9,6 +9,7 @@ from . serializers import GradeSerializer, ClassSerializer, StudentSerializer, S
 from django.views.decorators.cache import cache_page # cache
 from django.shortcuts import get_object_or_404 # atajo para obtener un objeto o un error
 from django.core import serializers # para deserializar los datos de request data
+from django.http import HttpResponse
 
 # @api_view(['GET'])
 # def home(request):
