@@ -26,9 +26,9 @@ class gradesView(viewsets.ViewSet):
 
 #view de las clases
 class classesView(viewsets.ViewSet):
-    def list(self, request):
+    def create(self,request):
         try: # añadiendo soporte para cuando getlist falle 
-            grade = request.data.getlist('grade') # recibe ['x'] en postman
+            grade = request.data.get('grade') # recibe ['x'] en postman
             current_user = request.user # recive el usuario
             queryset = Class.objects.filter(teachers__pk=current_user.pk).filter(grade__pk__in=grade) # filter(grades__pk__in=grades)  filter busca en una lista
             serializer = ClassSerializer(queryset, many=True)
@@ -38,7 +38,7 @@ class classesView(viewsets.ViewSet):
 
 #view de las unidades
 class unitView(viewsets.ViewSet):
-    def list(self,request):
+    def create(self,request):
         try:
             grade = request.data.getlist('grade') # recibe ['x'] en postman
             clase = request.data.getlist('clase') # recibe ['x'] en postman
@@ -50,7 +50,7 @@ class unitView(viewsets.ViewSet):
 
 #view de los estudiantes
 class studentView(viewsets.ViewSet):
-    def list(self,request):
+    def create(self,request):
         try:
             grade = request.data.getlist('grade') # recibe ['x'] en postman
             clase = request.data.getlist('clase') # recibe ['x'] en postman
@@ -62,7 +62,7 @@ class studentView(viewsets.ViewSet):
 
 #view de las notas
 class scoreView(viewsets.ViewSet):
-    def list(self,request):
+    def create(self,request):
         try:
             #clase = request.data.getlist('clase') # recibe ['x'] en postman
             unit = request.data.getlist('unit') # recibe ['x'] en postman
