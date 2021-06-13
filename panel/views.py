@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import render
 from rest_framework.response import Response # se utiliza response para enviar todos los datos y desenvocar en una vista de api
 from rest_framework.decorators import api_view # api_view para que rest_framwork lo reconozca
@@ -40,8 +41,8 @@ class classesView(viewsets.ViewSet):
 class unitView(viewsets.ViewSet):
     def create(self,request):
         try:
-            grade = request.data.getlist('grade') # recibe ['x'] en postman
-            clase = request.data.getlist('clase') # recibe ['x'] en postman
+            grade = request.data.get('grade') # recibe ['x'] en postman
+            clase = request.data.get('clase') # recibe ['x'] en postman
             queryset = Unit.objects.filter(grade__pk__in=grade).filter(clase__pk__in=clase)
             serializer = UnitSerializer(queryset, many=True)
             return Response(serializer.data)
@@ -52,8 +53,8 @@ class unitView(viewsets.ViewSet):
 class studentView(viewsets.ViewSet):
     def create(self,request):
         try:
-            grade = request.data.getlist('grade') # recibe ['x'] en postman
-            clase = request.data.getlist('clase') # recibe ['x'] en postman
+            grade = request.data.get('grade') # recibe ['x'] en postman
+            clase = request.data.get('clase') # recibe ['x'] en postman
             queryset = Student.objects.filter(grade__pk__in=grade).filter(classes__pk__in=clase)
             serializer = StudentSerializer(queryset, many=True)
             return Response(serializer.data)
@@ -65,9 +66,9 @@ class scoreView(viewsets.ViewSet):
     def create(self,request):
         try:
             #clase = request.data.getlist('clase') # recibe ['x'] en postman
-            unit = request.data.getlist('unit') # recibe ['x'] en postman
-            student = request.data.getlist('student') # recibe ['x'] en postman
-            queryset = Score.objects.filter(unit__pk__in=unit).filter(student__pk__in=student)
+            unit = request.data.get('unit') # recibe ['x'] en postman
+            grade = request.data.get('grade') # recibe ['x'] en postman
+            queryset = Score.objects.filter(unit__pk__in=unit).filter(student__pk__in=grade)
             print(queryset)
             serializer = ScoreSerializer(queryset, many=True)
             return Response(serializer.data)
